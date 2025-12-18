@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: zunda_postgres
+    environment:
+      POSTGRES_DB: zunda_db
+      POSTGRES_USER: zunda_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - zunda_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: zunda_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - zunda_network
+
+  backend:
+    build: .
+    container_name: zunda_backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=zunda_db
+      - DB_USER=zunda_user
+      - DB_PASSWORD=${DB_PASSWORD}
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET}
+      - YOO_SHOP_ID=${YOO_SHOP_ID}
+      - YOO_SECRET_KEY=${YOO_SECRET_KEY}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - zunda_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  zunda_network:
+    driver: bridge
