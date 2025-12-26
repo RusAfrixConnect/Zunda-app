@@ -95,66 +95,16 @@ function AppContent() {
   // 🛑 ЗАКОММЕНТИРУЙ оригинальный вызов useAuth:
   // const { isAuthenticated, isLoading, checkAuth } = useAuth();
 
-  // 🟢 Простейшая заглушка для теста
+  // 🟢 ТЕСТ ТОЛЬКО AuthScreen
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen 
-          name="Test" 
-          component={() => (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Text>✅ Тест: AppContent работает (без экранов)</Text>
-            </View>
-          )} 
-        />
+        {/* 🎯 Тестируем только AuthScreen */}
+        <Stack.Screen name="AuthTest" component={AuthScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
   );
-  
-  // 🛑 ЗАКОММЕНТИРУЙ весь старый код AppContent (ниже не выполнится)
-  /*
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
-  return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!isAuthenticated ? (
-          <Stack.Screen name="Auth" component={AuthScreen} />
-        ) : (
-          <>
-            <Stack.Screen name="MainTabs" component={MainTabs} />
-            <Stack.Screen 
-              name="GiftStore" 
-              component={GiftStoreScreen} 
-              options={{ 
-                headerShown: true, 
-                title: 'Магазин подарков',
-                headerBackTitle: 'Назад'
-              }} 
-            />
-            <Stack.Screen 
-              name="Withdrawal" 
-              component={WithdrawalScreen} 
-              options={{ 
-                headerShown: true, 
-                title: 'Вывод средств',
-                headerBackTitle: 'Назад'
-              }} 
-            />
-          </>
-        )}
-      </Stack.Navigator>
-      <StatusBar style="auto" />
-    </NavigationContainer>
-  );
-  */
 }
 
 // Экспорт основного компонента - ВЕРСИЯ ТЕСТ (без AuthProvider)
