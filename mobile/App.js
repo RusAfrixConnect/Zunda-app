@@ -100,7 +100,7 @@ function AppContent() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* 🎯 Тестируем только HomeScreen */}
-        <Stack.Screen name="LiveTest" component={LiveScreen} />
+        <Stack.Screen "WalletTest" component={WalletScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
