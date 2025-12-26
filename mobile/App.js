@@ -100,7 +100,7 @@ function AppContent() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* 🎯 Тестируем только HomeScreen */}
-        <Stack.Screen name="HomeTest" component={HomeScreen} />
+        <Stack.Screen name="DiscoverTest" component={DiscoverScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
