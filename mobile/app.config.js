@@ -74,34 +74,8 @@ export default {
         projectId: "zunda-app-id"
       }
     },
-    plugins: [
-      [
-        "expo-image-picker",
-        {
-          photosPermission: "Приложению требуется доступ к вашим фото.",
-          cameraPermission: "Приложению требуется доступ к вашей камере."
-        }
-      ],
-      [
-        "expo-location",
-        {
-          locationAlwaysAndWhenInUsePermission: "Показывать ваше местоположение другим пользователям."
-        }
-      ],
-      [
-        "expo-notifications",
-        {
-          icon: "./assets/notification-icon.png",
-          color: "#ffffff"
-        }
-      ],
-      [
-        "expo-av",
-        {
-          microphonePermission: "Приложению требуется доступ к микрофону для live стримов."
-        }
-      ]
-    ],
+    // SECTION DES PLUGINS SUPPRIMÉE (cause de l'erreur PluginError)
+    // Les plugins seront détectés et configurés automatiquement par Expo.
     scheme: "zunda",
     // Configuration spécifique pour Expo Go dans Codespaces
     hostUri: process.env.CODESPACES === 'true' ? 
