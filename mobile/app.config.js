@@ -2,31 +2,18 @@ import 'dotenv/config';
 
 export default {
   expo: {
-    // ====================
-    // CONFIGURATION DE BASE
-    // ====================
     name: "Zunda",
     slug: "zunda-app",
     version: "1.0.0",
     orientation: "portrait",
-    
-    // ====================
-    // ICÔNES & SPLASH SCREEN
-    // ====================
     icon: "./assets/icon.png",
     userInterfaceStyle: "light",
-    
     splash: {
       image: "./assets/splash.png",
       resizeMode: "contain",
-      backgroundColor: "#FF3B30"
+      backgroundColor: "#ffffff"
     },
-    
-    // ====================
-    // ASSETS & BUILD
-    // ====================
     assetBundlePatterns: ["**/*"],
-    
     ios: {
       supportsTablet: true,
       bundleIdentifier: "ru.zunda.app",
@@ -42,7 +29,6 @@ export default {
         ]
       }
     },
-    
     android: {
       package: "ru.zunda.app",
       versionCode: 1,
@@ -71,30 +57,23 @@ export default {
         }
       ]
     },
-    
     web: {
       favicon: "./assets/favicon.png"
     },
-    
-    // ====================
-    // ENVIRONNEMENT & VARIABLES
-    // ====================
     extra: {
-      API_URL: process.env.API_URL || "http://localhost:5000",
-      ENABLE_ANALYTICS: process.env.ENABLE_ANALYTICS || "false"
+      // URL dynamique pour Codespaces vs local
+      API_URL: process.env.API_URL || 
+        (process.env.CODESPACES === 'true' ? 
+          `https://${process.env.CODESPACE_NAME}-5000.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}` : 
+          "http://localhost:5000"
+        ),
+      ENABLE_ANALYTICS: process.env.ENABLE_ANALYTICS || "false",
+      YOO_SHOP_ID: process.env.YOO_SHOP_ID || "test_shop_id",
+      SENTRY_DSN: process.env.SENTRY_DSN || "",
+      eas: {
+        projectId: "zunda-app-id"
+      }
     },
-    
-    // ====================
-    // IMPORTANT: DÉSACTIVER LES STATS
-    // ====================
-    stats: {
-      enabled: false
-    },
-    
-    // ====================
-    // PLUGINS (COMMENTÉS TEMPORAIREMENT)
-    // ====================
-    /* 
     plugins: [
       [
         "expo-image-picker",
@@ -123,11 +102,16 @@ export default {
         }
       ]
     ],
-    */
-    
-    // ====================
-    // CONFIGURATION AVANCÉE
-    // ====================
-    scheme: "zunda"
+    scheme: "zunda",
+    // Configuration spécifique pour Expo Go dans Codespaces
+    hostUri: process.env.CODESPACES === 'true' ? 
+      `${process.env.CODESPACE_NAME}-8081.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}` : 
+      undefined,
+    updates: {
+      url: "https://u.expo.dev/zunda-app-id"
+    },
+    runtimeVersion: {
+      policy: "sdkVersion"
+    }
   }
 };
