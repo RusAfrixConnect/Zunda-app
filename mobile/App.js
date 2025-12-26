@@ -86,7 +86,7 @@ function LoadingScreen() {
   );
 }
 
-// Главный компонент приложения - ТЕСТ HomeScreen
+// Главный компонент приложения - ТЕСТ WalletScreen
 function AppContent() {
   // 🟢 ВРЕМЕННЫЕ ФИКСИРОВАННЫЕ ЗНАЧЕНИЯ (имитация ЗАГРУЗКИ И АВТОРИЗАЦИИ)
   const isAuthenticated = true;  // 🎯 ИЗМЕНИ НА true ДЛЯ ТЕСТА ОСНОВНЫХ ЭКРАНОВ
@@ -95,12 +95,12 @@ function AppContent() {
   // 🛑 ЗАКОММЕНТИРУЙ оригинальный вызов useAuth:
   // const { isAuthenticated, isLoading, checkAuth } = useAuth();
 
-  // 🟢 ТЕСТ ТОЛЬКО HomeScreen (показывается при isAuthenticated = true)
+  // 🟢 ТЕСТ ТОЛЬКО WalletScreen (показывается при isAuthenticated = true)
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* 🎯 Тестируем только HomeScreen */}
-        <Stack.Screen "WalletTest" component={WalletScreen} />
+        {/* 🎯 Тестируем только WalletScreen (LIGNE CORRIGÉE) */}
+        <Stack.Screen name="WalletTest" component={WalletScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
