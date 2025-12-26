@@ -33,15 +33,22 @@ const WalletScreen = () => {
   ];
 
   // Загружаем историю транзакций
-  const loadTransactions = async () => {
-    try {
-      const response = await axios.get('https://api.zunda.ru/api/payment/transactions');
-      setTransactions(response.data.data || []);
-    } catch (error) {
-      console.error('Ошибка загрузки транзакций:', error);
-      Alert.alert('Ошибка', 'Не удалось загрузить историю транзакций');
-    }
-  };
+ const loadTransactions = async () => {
+  try {
+    // 🛑 COMMENTER l'appel API qui échoue
+    // const response = await axios.get('https://api.zunda.ru/api/payment/transactions');
+    // setTransactions(response.data.data || []);
+    
+    // ✅ METTRE des données fictives pour tester
+    setTransactions([
+      { id: 1, type: 'coin_purchase', amount: 1000, status: 'completed', created_at: new Date() },
+      { id: 2, type: 'withdrawal', amount: 500, status: 'pending', created_at: new Date() },
+    ]);
+  } catch (error) {
+    console.error('Ошибка загрузки транзакций:', error);
+    Alert.alert('Ошибка', 'Не удалось загрузить историю транзакций');
+  }
+};;
 
   // Обновление данных при фокусе
   useEffect(() => {
