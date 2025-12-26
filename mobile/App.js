@@ -79,14 +79,14 @@ function MainTabs() {
 function LoadingScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFFFFF' }}>
-      {/* On remplace ActivityIndicator par un simple texte */}
+      {/* On remplace ActivityIndicator par un simple текст */}
       <Text style={{ fontSize: 18, color: '#FF3B30', fontWeight: 'bold' }}>●</Text>
       <Text style={{ marginTop: 20, fontSize: 16, color: '#8E8E93' }}>Загрузка Zunda...</Text>
     </View>
   );
 }
 
-// Главный компонент приложения
+// Главный компонент приложения - ВЕРСИЯ МИНИМАЛЬНАЯ ДЛЯ ТЕСТА
 function AppContent() {
   // 🟢 ВРЕМЕННЫЕ ФИКСИРОВАННЫЕ ЗНАЧЕНИЯ (имитация загрузки)
   const isAuthenticated = false;  // Поменяй на true чтобы проверить главный экран
@@ -95,6 +95,25 @@ function AppContent() {
   // 🛑 ЗАКОММЕНТИРУЙ оригинальный вызов useAuth:
   // const { isAuthenticated, isLoading, checkAuth } = useAuth();
 
+  // 🟢 Простейшая заглушка для теста
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen 
+          name="Test" 
+          component={() => (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Text>✅ Тест: AppContent работает (без экранов)</Text>
+            </View>
+          )} 
+        />
+      </Stack.Navigator>
+      <StatusBar style="auto" />
+    </NavigationContainer>
+  );
+  
+  // 🛑 ЗАКОММЕНТИРУЙ весь старый код AppContent (ниже не выполнится)
+  /*
   useEffect(() => {
     checkAuth();
   }, []);
@@ -135,14 +154,14 @@ function AppContent() {
       <StatusBar style="auto" />
     </NavigationContainer>
   );
+  */
 }
 
 // Экспорт основного компонента - ВЕРСИЯ ТЕСТ (без AuthProvider)
 export default function App() {
-  // 🟢 ВРЕМЕННАЯ ВЕРСИЯ: сразу показываем AppContent, имитируя загрузку
+  // 🟢 ВРЕМЕННАЯ ВЕРСИЯ: сразу показываем AppContent
   return (
     <View style={{ flex: 1 }}>
-      {/* Мы временно передаем фиктивные значения useAuth */}
       <AppContent />
     </View>
   );
