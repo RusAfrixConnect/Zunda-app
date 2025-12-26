@@ -1,18 +1,11 @@
-cd /workspaces/Zunda-app/mobile
-
-# Backup de ta config actuelle
-cp app.config.js app.config.js.backup
-
-# Crée une version qui NE DEPEND PAS de dotenv
-cat > app.config.js << 'EOF'
+// app.config.js SIMPLIFIÉ
 export default {
   expo: {
-    // Configuration minimale
     name: "Zunda",
-    slug: "zunda-app", 
+    slug: "zunda-app",
     version: "1.0.0",
     
-    // ESSENTIEL: Désactive les stats pour éviter GraphQL
+    // ESSENTIEL: Désactive les stats pour éviter l'erreur GraphQL
     stats: {
       enabled: false
     },
@@ -29,11 +22,10 @@ export default {
       versionCode: 1
     },
     
-    // Variables codées en dur POUR L'INSTANT
+    // Variables d'environnement (sans dotenv pour l'instant)
     extra: {
       API_URL: "http://localhost:5000",
       ENABLE_ANALYTICS: "false"
     }
   }
 };
-EOF
