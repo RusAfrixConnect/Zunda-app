@@ -86,21 +86,21 @@ function LoadingScreen() {
   );
 }
 
-// Главный компонент приложения - ВЕРСИЯ МИНИМАЛЬНАЯ ДЛЯ ТЕСТА
+// Главный компонент приложения - ТЕСТ HomeScreen
 function AppContent() {
-  // 🟢 ВРЕМЕННЫЕ ФИКСИРОВАННЫЕ ЗНАЧЕНИЯ (имитация загрузки)
-  const isAuthenticated = false;  // Поменяй на true чтобы проверить главный экран
+  // 🟢 ВРЕМЕННЫЕ ФИКСИРОВАННЫЕ ЗНАЧЕНИЯ (имитация ЗАГРУЗКИ И АВТОРИЗАЦИИ)
+  const isAuthenticated = true;  // 🎯 ИЗМЕНИ НА true ДЛЯ ТЕСТА ОСНОВНЫХ ЭКРАНОВ
   const isLoading = false;
   const checkAuth = () => { console.log('checkAuth called'); };
   // 🛑 ЗАКОММЕНТИРУЙ оригинальный вызов useAuth:
   // const { isAuthenticated, isLoading, checkAuth } = useAuth();
 
-  // 🟢 ТЕСТ ТОЛЬКО AuthScreen
+  // 🟢 ТЕСТ ТОЛЬКО HomeScreen (показывается при isAuthenticated = true)
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* 🎯 Тестируем только AuthScreen */}
-        <Stack.Screen name="AuthTest" component={AuthScreen} />
+        {/* 🎯 Тестируем только HomeScreen */}
+        <Stack.Screen name="HomeTest" component={HomeScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
