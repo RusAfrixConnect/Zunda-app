@@ -88,7 +88,12 @@ function LoadingScreen() {
 
 // Главный компонент приложения
 function AppContent() {
-  const { isAuthenticated, isLoading, checkAuth } = useAuth();
+  // 🟢 ВРЕМЕННЫЕ ФИКСИРОВАННЫЕ ЗНАЧЕНИЯ (имитация загрузки)
+  const isAuthenticated = false;  // Поменяй на true чтобы проверить главный экран
+  const isLoading = false;
+  const checkAuth = () => { console.log('checkAuth called'); };
+  // 🛑 ЗАКОММЕНТИРУЙ оригинальный вызов useAuth:
+  // const { isAuthenticated, isLoading, checkAuth } = useAuth();
 
   useEffect(() => {
     checkAuth();
@@ -132,11 +137,20 @@ function AppContent() {
   );
 }
 
-// Экспорт основного компонента
+// Экспорт основного компонента - ВЕРСИЯ ТЕСТ (без AuthProvider)
 export default function App() {
+  // 🟢 ВРЕМЕННАЯ ВЕРСИЯ: сразу показываем AppContent, имитируя загрузку
   return (
-    <AuthProvider>
+    <View style={{ flex: 1 }}>
+      {/* Мы временно передаем фиктивные значения useAuth */}
       <AppContent />
-    </AuthProvider>
+    </View>
   );
+  
+  // 🛑 ЗАКОММЕНТИРУЙ старую версию:
+  // return (
+  //   <AuthProvider>
+  //     <AppContent />
+  //   </AuthProvider>
+  // );
 }
