@@ -79,7 +79,8 @@ function MainTabs() {
 function LoadingScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFFFFF' }}>
-      <ActivityIndicator size="large" color="#FF3B30" />
+      {/* On remplace ActivityIndicator par un simple texte */}
+      <Text style={{ fontSize: 18, color: '#FF3B30', fontWeight: 'bold' }}>●</Text>
       <Text style={{ marginTop: 20, fontSize: 16, color: '#8E8E93' }}>Загрузка Zunda...</Text>
     </View>
   );
