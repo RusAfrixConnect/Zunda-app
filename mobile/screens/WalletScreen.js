@@ -180,9 +180,8 @@ const WalletScreen = () => {
   return (
     <ScrollView 
       style={styles.container}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
+      // 🛑 MODIFICATION 1: Désactiver RefreshControl
+      refreshControl={null} // Temporairement désactivé pour test
     >
       {/* Заголовок и баланс */}
       <View style={styles.header}>
@@ -257,15 +256,10 @@ const WalletScreen = () => {
         <Text style={styles.sectionTitle}>Пополнить баланс</Text>
         <Text style={styles.sectionSubtitle}>Выберите пакет Zunda Coins</Text>
         
-        <FlatList
-          data={coinPackages}
-          renderItem={renderPackage}
-          keyExtractor={(item) => item.id}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.packagesList}
-          contentContainerStyle={styles.packagesContainer}
-        />
+        {/* 🛑 MODIFICATION 2: Remplacer FlatList par une View simple */}
+        <View style={styles.packagesContainer}>
+          <Text style={{color: '#8E8E93'}}>Packages temporairement désactivés</Text>
+        </View>
       </View>
 
       {/* История транзакций */}
