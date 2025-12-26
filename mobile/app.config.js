@@ -8,11 +8,16 @@ export default {
     orientation: "portrait",
     // icon: "./assets/icon.png",
     userInterfaceStyle: "light",
-    splash: {
-      image: "./assets/splash.png",
-      resizeMode: "contain",
-      backgroundColor: "#ffffff"
-    },
+ // icon: "./assets/icon.png",
+splash: {
+  // image: "./assets/splash.png",
+  resizeMode: "contain",
+  backgroundColor: "#ffffff"
+},
+adaptiveIcon: {
+  // foregroundImage: "./assets/adaptive-icon.png",
+  backgroundColor: "#FFFFFF"
+},
     assetBundlePatterns: ["**/*"],
     ios: {
       supportsTablet: true,
