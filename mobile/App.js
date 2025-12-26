@@ -4,20 +4,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Экранные компоненты
 import HomeScreen from './screens/HomeScreen';
 import DiscoverScreen from './screens/DiscoverScreen';
 import LiveScreen from './screens/LiveScreen';
-import WalletScreen from './screens/WalletScreen';
+import WalletScreen from './screens/WalletScreen'; // Contient les corrections
 import ProfileScreen from './screens/ProfileScreen';
 import AuthScreen from './screens/AuthScreen';
 import GiftStoreScreen from './screens/GiftStoreScreen';
 import WithdrawalScreen from './screens/WithdrawalScreen';
 
-// Контекст авторизации
+// Контекст авторизации (import gardé pour la structure)
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 const Tab = createBottomTabNavigator();
@@ -65,7 +65,7 @@ function MainTabs() {
       <Tab.Screen 
         name="Главная" 
         component={HomeScreen}
-        options={{ tabBarBadge: 3 }} // Уведомления
+        options={{ tabBarBadge: 3 }}
       />
       <Tab.Screen name="Поиск" component={DiscoverScreen} />
       <Tab.Screen name="Live" component={LiveScreen} />
@@ -75,48 +75,73 @@ function MainTabs() {
   );
 }
 
-// Компонент загрузки
+// Компонент загрузки (sans ActivityIndicator problématique)
 function LoadingScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFFFFF' }}>
-      {/* On remplace ActivityIndicator par un simple текст */}
       <Text style={{ fontSize: 18, color: '#FF3B30', fontWeight: 'bold' }}>●</Text>
       <Text style={{ marginTop: 20, fontSize: 16, color: '#8E8E93' }}>Загрузка Zunda...</Text>
     </View>
   );
 }
 
-// Главный компонент приложения - ТЕСТ WalletScreen
+// Главный компонент приложения
 function AppContent() {
-  // 🟢 ВРЕМЕННЫЕ ФИКСИРОВАННЫЕ ЗНАЧЕНИЯ (имитация ЗАГРУЗКИ И АВТОРИЗАЦИИ)
-  const isAuthenticated = true;  // 🎯 ИЗМЕНИ НА true ДЛЯ ТЕСТА ОСНОВНЫХ ЭКРАНОВ
-  const isLoading = false;
+  // ✅ Valeurs fixes pour tester TOUTE l'application (onglets + écrans)
+  const isAuthenticated = true;   // Voir les onglets
+  const isLoading = false;        // Pas d'écran de chargement
   const checkAuth = () => { console.log('checkAuth called'); };
-  // 🛑 ЗАКОММЕНТИРУЙ оригинальный вызов useAuth:
-  // const { isAuthenticated, isLoading, checkAuth } = useAuth();
 
-  // 🟢 ТЕСТ ТОЛЬКО WalletScreen (показывается при isAuthenticated = true)
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* 🎯 Тестируем только WalletScreen (LIGNE CORRIGÉE) */}
-        <Stack.Screen name="WalletTest" component={WalletScreen} />
+        {!isAuthenticated ? (
+          // Si non authentifié : écran de connexion
+          <Stack.Screen name="Auth" component={AuthScreen} />
+        ) : (
+          // Si authentifié : onglets + écrans modaux
+          <>
+            <Stack.Screen name="MainTabs" component={MainTabs} />
+            <Stack.Screen 
+              name="GiftStore" 
+              component={GiftStoreScreen} 
+              options={{ 
+                headerShown: true, 
+                title: 'Магазин подарков',
+                headerBackTitle: 'Назад'
+              }} 
+            />
+            <Stack.Screen 
+              name="Withdrawal" 
+              component={WithdrawalScreen} 
+              options={{ 
+                headerShown: true, 
+                title: 'Вывод средств',
+                headerBackTitle: 'Назад'
+              }} 
+            />
+          </>
+        )}
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
   );
 }
 
-// Экспорт основного компонента - ВЕРСИЯ ТЕСТ (без AuthProvider)
+// Экспорт основного компонента
 export default function App() {
-  // 🟢 ВРЕМЕННАЯ ВЕРСИЯ: сразу показываем AppContent
+  // ✅ Version sans AuthProvider (pour éviter tout conflit)
   return (
     <View style={{ flex: 1 }}>
       <AppContent />
     </View>
   );
   
-  // 🛑 ЗАКОММЕНТИРУЙ старую версию:
+  // ❌ Ancienne version (à garder commentée pour l'instant)
   // return (
   //   <AuthProvider>
   //     <AppContent />
