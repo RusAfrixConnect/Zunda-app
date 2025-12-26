@@ -113,7 +113,7 @@ const AuthScreen = () => {
             disabled={loading}
           >
             {loading ? (
-              <ActivityIndicator color="#FFFFFF" />
+              <Text style={{color: '#FFFFFF', fontSize: 18}}>●</Text>
             ) : (
               <Text style={styles.submitButtonText}>
                 {isLogin ? 'Войти' : 'Зарегистрироваться'}
