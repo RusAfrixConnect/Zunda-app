@@ -180,4 +180,86 @@ const styles = StyleSheet.create({
   title: { fontSize: 28, fontWeight: 'bold', color: '#000' },
   profileCard: { 
     backgroundColor: '#fff', marginHorizontal: 16, marginTop: 8,
-    padding: 20
+    padding: 20, borderRadius: 16 
+  },
+  profileHeader: { flexDirection: 'row', marginBottom: 20 },
+  avatarContainer: { position: 'relative', marginRight: 16 },
+  avatar: { 
+    width: 80, height: 80, borderRadius: 40, backgroundColor: '#FF3B30',
+    justifyContent: 'center', alignItems: 'center' 
+  },
+  avatarText: { fontSize: 32, fontWeight: 'bold', color: '#fff' },
+  editAvatarButton: { 
+    position: 'absolute', bottom: 0, right: 0,
+    width: 28, height: 28, borderRadius: 14, backgroundColor: '#007AFF',
+    justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: '#fff' 
+  },
+  profileInfo: { flex: 1 },
+  profileName: { fontSize: 22, fontWeight: 'bold', color: '#000' },
+  profileUsername: { fontSize: 16, color: '#8E8E93', marginTop: 2 },
+  profileBio: { fontSize: 14, color: '#000', marginTop: 8, lineHeight: 20 },
+  statsRow: { 
+    flexDirection: 'row', justifyContent: 'space-around',
+    paddingVertical: 20, borderTopWidth: 1, borderTopColor: '#F2F2F7',
+    borderBottomWidth: 1, borderBottomColor: '#F2F2F7' 
+  },
+  statColumn: { alignItems: 'center' },
+  statNumber: { fontSize: 20, fontWeight: 'bold', color: '#000' },
+  statLabel: { fontSize: 14, color: '#8E8E93', marginTop: 4 },
+  actionButtons: { 
+    flexDirection: 'row', marginTop: 20,
+    justifyContent: 'space-between', alignItems: 'center' 
+  },
+  editButton: { 
+    flex: 1, backgroundColor: '#F2F2F7', paddingVertical: 12,
+    borderRadius: 10, alignItems: 'center', marginRight: 12 
+  },
+  editButtonText: { fontSize: 16, fontWeight: '600', color: '#000' },
+  shareButton: { 
+    width: 44, height: 44, borderRadius: 10, backgroundColor: '#F2F2F7',
+    justifyContent: 'center', alignItems: 'center' 
+  },
+  statsCards: { 
+    flexDirection: 'row', justifyContent: 'space-between',
+    marginHorizontal: 16, marginTop: 16 
+  },
+  statCard: { 
+    flex: 1, backgroundColor: '#fff', padding: 16, borderRadius: 12,
+    alignItems: 'center', marginHorizontal: 4 
+  },
+  statIcon: { fontSize: 24, marginBottom: 8 },
+  statCardValue: { fontSize: 18, fontWeight: 'bold', color: '#000' },
+  statCardLabel: { fontSize: 12, color: '#8E8E93', marginTop: 4 },
+  section: { backgroundColor: '#fff', marginTop: 8, paddingVertical: 16 },
+  sectionHeader: { 
+    flexDirection: 'row', justifyContent: 'space-between',
+    alignItems: 'center', marginHorizontal: 16, marginBottom: 16 
+  },
+  sectionTitle: { fontSize: 18, fontWeight: 'bold', color: '#000', marginHorizontal: 16 },
+  seeAll: { fontSize: 14, color: '#007AFF', fontWeight: '500' },
+  postsList: { paddingLeft: 16 },
+  postCard: { 
+    width: 160, backgroundColor: '#F8F8F8', marginRight: 12,
+    padding: 12, borderRadius: 12 
+  },
+  postHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
+  postType: { 
+    width: 30, height: 30, borderRadius: 8, backgroundColor: '#007AFF',
+    justifyContent: 'center', alignItems: 'center', marginRight: 8 
+  },
+  photoType: { backgroundColor: '#34C759' },
+  liveType: { backgroundColor: '#FF3B30' },
+  postContent: { flex: 1, fontSize: 14, color: '#000' },
+  postStats: { flexDirection: 'row', justifyContent: 'space-around' },
+  statItem: { flexDirection: 'row', alignItems: 'center' },
+  statText: { fontSize: 14, color: '#8E8E93', marginLeft: 4 },
+  menuItem: { 
+    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+    paddingHorizontal: 16, paddingVertical: 16, borderBottomWidth: 1,
+    borderBottomColor: '#F2F2F7' 
+  },
+  menuLeft: { flexDirection: 'row', alignItems: 'center' },
+  menuTitle: { fontSize: 16, color: '#000', marginLeft: 12 },
+});
+
+export default ProfileScreen;
